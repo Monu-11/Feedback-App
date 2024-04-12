@@ -21,7 +21,7 @@ Before running this application, you need to have the following installed:
 
 1. **Clone the repository**:
 
-- git clone <https://github.com/Monu-11/Feedback-App>
+- git clone <https://github.com/Monu-11/Feedback-App.git>
 
 - run \*\* yarn to install
 
