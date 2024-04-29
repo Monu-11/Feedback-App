@@ -71,17 +71,7 @@ export async function POST(request: Request) {
       verifyCode
     );
 
-    if (!emailResponse) {
-      return Response.json(
-        {
-          success: false,
-          message: "Email response not available",
-        },
-        { status: 500 }
-      );
-    }
-
-    if ("message" in emailResponse) {
+    if (!emailResponse.success) {
       return Response.json(
         {
           success: false,

@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 
-const SignIn = () => {
+const SignUp = () => {
   const { toast } = useToast();
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
@@ -45,7 +45,6 @@ const SignIn = () => {
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      debugger;
       if (username) {
         setIsCheckingUsername(true);
         setUsernameMessage("");
@@ -54,7 +53,6 @@ const SignIn = () => {
           const response = await axios.get(
             `/api/check-username-unique?username=${username}`
           );
-          console.log("check", response);
           setUsernameMessage(response.data.message);
         } catch (error) {
           const axiosError = error as AxiosError<ApiResponse>;
@@ -70,11 +68,9 @@ const SignIn = () => {
   }, [username]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
-    console.log("data :", data);
     setIsSubmitting(true);
     try {
       const response = await axios.post<ApiResponse>("/api/sign-up", data);
-      console.log("response :", response);
       toast({
         title: "Success",
         description: response.data.message,
@@ -125,7 +121,7 @@ const SignIn = () => {
                   <p
                     className={`text-sm ${usernameMessage === "Username is unique" ? "text-green-500" : "text-red-500"}`}
                   >
-                    test {usernameMessage}
+                    {usernameMessage}
                   </p>
                   <FormMessage />
                 </FormItem>
@@ -185,4 +181,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
